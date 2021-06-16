@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const Header = ({ setTheme }: Props) => {
-  const theme: Theme = useTheme() as Theme;
+  const theme = useTheme();
   const [stopIt, setStopIt] = useState(false);
 
   const handleSetTheme = () => {

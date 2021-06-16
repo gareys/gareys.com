@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { LIGHT_THEME, Theme } from './theme';
 import { Header } from './Header';
+import { Counter } from './Counter';
 
 export const App = () => {
   const [count, setCount] = useState(0);
@@ -45,6 +46,11 @@ export const App = () => {
             </a>
           </p>
         </Content>
+        <Footer>
+          <FooterContent>
+            <Counter />
+          </FooterContent>
+        </Footer>
       </div>
     </ThemeProvider>
   );
@@ -67,4 +73,20 @@ const Content = styled.div`
   a {
     color: ${(props) => props.theme.primaryButton};
   }
+`;
+
+const FooterContent = styled.div`
+  padding: 10px;
+  width: 100%;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  background-color: ${(props) => props.theme.primaryButton};
+  bottom: 0;
+  height: 80px;
+  width: 100%;
 `;
