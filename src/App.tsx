@@ -5,47 +5,15 @@ import { Header } from './Header';
 import { Counter } from './Counter';
 
 export const App = () => {
-  const [count, setCount] = useState(0);
   const [theme, setTheme] = useState(LIGHT_THEME);
+  const [content, setContent] = useState(<div>Hello</div>);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <div className="App">
-        <Header setTheme={setTheme} />
-        <Content>
-          <p>Hello Vite + React!</p>
-          <p>
-            <button
-              type="button"
-              onClick={() => setCount((count) => count + 1)}
-            >
-              count is: {count}
-            </button>
-          </p>
-          <p>
-            Edit <code>App.tsx</code> and save to test HMR updates.
-          </p>
-          <p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-            {' | '}
-            <a
-              className="App-link"
-              href="https://vitejs.dev/guide/features.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Vite Docs
-            </a>
-          </p>
-        </Content>
+        <Header setTheme={setTheme} setContent={setContent} content={content} />
+        <Content>{content}</Content>
         <Footer>
           <FooterContent>
             <Counter />
@@ -56,7 +24,7 @@ export const App = () => {
   );
 };
 
-const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+const GlobalStyle = createGlobalStyle`
   body {
       background-color: ${(props) => props.theme.background};
     }
@@ -67,7 +35,6 @@ const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 `;
 
 const Content = styled.div`
-  padding: 10px;
   color: ${(props) => props.theme.text};
   height: 100%;
   a {

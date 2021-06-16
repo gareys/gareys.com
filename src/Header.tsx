@@ -2,16 +2,30 @@ import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import logoImg from './public/logo.png';
 import { DARK_THEME, LIGHT_THEME, Theme } from './theme';
-
+import { useCountWithThreshold } from './hooks/useCountWithThreshold';
+import { FarmScene } from './FarmScene';
 type Props = {
   setTheme: (theme: Theme) => void;
+  setContent: (element: JSX.Element) => void;
+  content: JSX.Element;
 };
 
-export const Header = ({ setTheme }: Props) => {
+export const Header = ({ setTheme, setContent, content }: Props) => {
   const theme = useTheme();
   const [stopIt, setStopIt] = useState(false);
+  const { count, setCount, thresholdReached } = useCountWithThreshold(5);
 
   const handleSetTheme = () => {
+    if (thresholdReached) {
+      setCount(0);
+      if (content.type.displayName !== 'FarmScene') {
+        setContent(
+          <FarmScene previousContent={content} setContent={setContent} />
+        );
+      }
+      return;
+    }
+    setCount(count + 1);
     setTheme(theme.name === 'light' ? DARK_THEME : LIGHT_THEME);
   };
 

@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useVisitCount } from './hooks/useVisitCount';
 
 export const Counter = () => {
-  const randomBigNumber = useVisitCount();
-  const visitsArray = randomBigNumber.toString().split('');
+  const visits = useVisitCount();
+  const visitsArray = visits.toString().split('');
   return (
     <GeocitiesCounter>
       <table>
