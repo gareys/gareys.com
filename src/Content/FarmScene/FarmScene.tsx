@@ -1,18 +1,19 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { useViewContext } from '../../_contexts/viewContext';
 
 type Props = {
-  previousContent: JSX.Element;
-  setContent: (element: JSX.Element) => void;
+  previousContent: JSX.Element | null;
 };
 
-const FarmScene = ({ previousContent, setContent }: Props) => {
+const FarmScene = ({ previousContent }: Props) => {
+  const { setView } = useViewContext();
   return (
     <ContentContainer>
       <GlobalStyle />
       <Sun
         onClick={() => {
-          setContent(previousContent);
+          setView(previousContent);
         }}
       >
         <span className="icon">&#9728;</span>

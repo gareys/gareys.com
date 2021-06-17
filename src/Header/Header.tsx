@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
-import styled, { useTheme } from 'styled-components';
-import logoImg from './public/logo.png';
-import { DARK_THEME, LIGHT_THEME, Theme } from './theme';
-import { useCountWithThreshold } from './hooks/useCountWithThreshold';
-import { FarmScene } from './FarmScene';
-type Props = {
-  setTheme: (theme: Theme) => void;
-  setContent: (element: JSX.Element) => void;
-  content: JSX.Element;
-};
+import styled from 'styled-components';
+import logoImg from '../_assets/logo.png';
+import { DARK_THEME, LIGHT_THEME } from '../_theme/theme';
+import { FarmScene } from '../Content/FarmScene/FarmScene';
+import { useCustomThemeContext } from '../_contexts/customThemeContext';
+import { useViewContext } from '../_contexts/viewContext';
+import { useCountContext } from '../_contexts/countContext';
 
-export const Header = ({ setTheme, setContent, content }: Props) => {
-  const theme = useTheme();
+export const Header = () => {
+  const { theme, setTheme } = useCustomThemeContext();
+  const { view, setView } = useViewContext();
+  const { state: countState, dispatch: countDispatch } = useCountContext();
   const [stopIt, setStopIt] = useState(false);
-  const { count, setCount, thresholdReached } = useCountWithThreshold(5);
 
   const handleSetTheme = () => {
-    if (thresholdReached) {
-      setCount(0);
-      if (content.type.displayName !== 'FarmScene') {
-        setContent(
-          <FarmScene previousContent={content} setContent={setContent} />
-        );
-      }
+    setTheme(theme.name === 'light' ? DARK_THEME : LIGHT_THEME);
+    if (view?.type.displayName === 'FarmScene') {
       return;
     }
-    setCount(count + 1);
-    setTheme(theme.name === 'light' ? DARK_THEME : LIGHT_THEME);
+    if (countState.count === 6) {
+      countDispatch({ type: 'reset' });
+      setView(<FarmScene previousContent={view} />);
+    }
+    countDispatch({ type: 'increment' });
   };
 
   return (

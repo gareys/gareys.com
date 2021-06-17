@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import { useVisitCount } from './hooks/useVisitCount';
+import { useVisitCount } from '../../_hooks/useVisitCount';
 
 export const Counter = () => {
   const visits = useVisitCount();
-  const visitsArray = visits.toString().split('');
+  const visitsArray = visits.split('');
   return (
     <GeocitiesCounter>
       <table>

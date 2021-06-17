@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-export const LIGHT_THEME: Theme = {
+export const LIGHT_THEME: DefaultTheme = {
   name: 'light',
   background: '#FFF',
   text: '#000',
@@ -14,7 +14,7 @@ export const LIGHT_THEME: Theme = {
   tertiaryButton: '#F2E744',
 };
 
-export const DARK_THEME: Theme = {
+export const DARK_THEME: DefaultTheme = {
   name: 'dark',
   background: '#222',
   text: '#FFF',
