@@ -112,28 +112,31 @@ const Cloud = styled.div<{
 
 const Grass = styled.div`
   position: absolute;
-  bottom: -200px;
+  bottom: -250px;
   background-color: green;
   height: 500px;
   width: 100%;
   transform: scaleX(2);
   border-radius: 50%;
+  z-index: 3;
 `;
 
 const Pig = styled.div`
   position: absolute;
   left: 60%;
-  bottom: 250px;
+  bottom: 200px;
   font-size: 100px;
   transform: rotate(6deg);
+  z-index: 3;
 `;
 
 const Cow = styled.div`
   position: absolute;
   left: 15%;
-  bottom: 155px;
+  bottom: 105px;
   font-size: 200px;
   transform: rotate(-6deg) scaleX(-1);
+  z-index: 3;
 `;
 
 const ContentContainer = styled.div`

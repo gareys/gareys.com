@@ -8,7 +8,9 @@ export const useLocalStorage = (key: string) => {
   useEffect(() => {
     if (value) {
       window.localStorage.setItem(key, value);
+      return;
     }
+    window.localStorage.removeItem(key);
   }, [value]);
 
   return { value, setValue };

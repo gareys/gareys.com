@@ -3,20 +3,15 @@ import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { LIGHT_THEME } from '../_theme/theme';
 
 const CustomThemeContext =
-  createContext<
-    | {
-        theme: DefaultTheme;
-        setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>;
-      }
-    | undefined
-  >(undefined);
+  createContext<React.Dispatch<React.SetStateAction<DefaultTheme>> | undefined>(
+    undefined
+  );
 
 export const CustomThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(LIGHT_THEME);
 
-  const value = { theme, setTheme };
   return (
-    <CustomThemeContext.Provider value={value}>
+    <CustomThemeContext.Provider value={setTheme}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </CustomThemeContext.Provider>
   );

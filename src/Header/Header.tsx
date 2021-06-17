@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import logoImg from '../_assets/logo.png';
 import { DARK_THEME, LIGHT_THEME } from '../_theme/theme';
 import { FarmScene } from '../Content/FarmScene/FarmScene';
@@ -8,7 +8,8 @@ import { useViewContext } from '../_contexts/viewContext';
 import { useCountContext } from '../_contexts/countContext';
 
 export const Header = () => {
-  const { theme, setTheme } = useCustomThemeContext();
+  const setTheme = useCustomThemeContext();
+  const theme = useTheme();
   const { view, setView } = useViewContext();
   const { state: countState, dispatch: countDispatch } = useCountContext();
   const [stopIt, setStopIt] = useState(false);
