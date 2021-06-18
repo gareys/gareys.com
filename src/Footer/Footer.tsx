@@ -21,9 +21,7 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: absolute;
   background-color: ${(props) => props.theme.primaryButton};
-  bottom: 0;
   height: 80px;
   width: 100%;
 `;
